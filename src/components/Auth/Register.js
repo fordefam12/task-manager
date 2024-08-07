@@ -1,5 +1,4 @@
 // src/components/Auth/Register.js
-<<<<<<< HEAD
 import React, { useState } from 'react';
 
 const Register = () => {
@@ -47,16 +46,6 @@ const Register = () => {
       <div>Password Strength: {passwordStrength}</div>
       <button type="submit">Register</button>
     </form>
-=======
-import React from 'react';
-
-const Register = () => {
-  return (
-    <div>
-      <h1>Register</h1>
-      {/* Registration form goes here */}
-    </div>
->>>>>>> a23812e (Normalize all line endings)
   );
 };
 

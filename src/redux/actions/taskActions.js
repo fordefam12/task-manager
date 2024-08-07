@@ -1,6 +1,5 @@
 // src/redux/actions/taskActions.js
 import axios from 'axios';
-<<<<<<< HEAD
 import { put, takeEvery } from 'redux-saga/effects';
 
 export const FETCH_TASKS_REQUEST = 'FETCH_TASKS_REQUEST';
@@ -52,14 +51,3 @@ export function* fetchTasks() {
 export function* watchFetchTasks() {
   yield takeEvery(FETCH_TASKS_REQUEST, fetchTasks);
 }
-=======
-
-export const fetchTasks = () => async (dispatch) => {
-  try {
-    const response = await axios.get('/api/tasks');
-    dispatch({ type: 'FETCH_TASKS_SUCCESS', payload: response.data });
-  } catch (error) {
-    dispatch({ type: 'FETCH_TASKS_FAILURE', payload: error.message });
-  }
-};
->>>>>>> a23812e (Normalize all line endings)
