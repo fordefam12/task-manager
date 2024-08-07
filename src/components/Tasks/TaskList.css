@@ -1,0 +1,29 @@
+/* src/components/Tasks/TaskList.css */
+.task-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .task-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f5f5f5;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  
+  .task-list li.completed {
+    text-decoration: line-through;
+    color: grey;
+  }
+  
+  .task-list .delete-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  

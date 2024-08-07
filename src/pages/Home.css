@@ -1,0 +1,39 @@
+/* src/pages/Home.css */
+.home {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  .home-header {
+    background-color: #282c34;
+    padding: 20px;
+    color: white;
+  }
+  
+  .home-header nav a {
+    margin: 0 10px;
+    color: #61dafb;
+    text-decoration: none;
+  }
+  
+  .home-header nav a:hover {
+    text-decoration: underline;
+  }
+  
+  .home-main {
+    padding: 20px;
+  }
+  
+  .home-welcome {
+    margin: 20px 0;
+  }
+  
+  .home-footer {
+    background-color: #282c34;
+    padding: 10px;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
