@@ -120,83 +120,82 @@ task-manager/
 │   ├── theme.js
 ├── package.json
 ├── .env
-Redux State Management
-Actions
-authActions.js
-loginUser: Action to handle user login.
-registerUser: Action to handle user registration.
-taskActions.js
-fetchTasksRequest: Action to fetch tasks.
-fetchTasksSuccess: Action to handle successful task fetch.
-fetchTasksError: Action to handle task fetch error.
-toggleTaskCompletion: Action to toggle task completion.
-addTask: Action to add a new task.
-deleteTask: Action to delete a task.
-Reducers
-authReducer.js
-Handles authentication-related state:
 
-LOGIN_USER: Sets the user state on login.
-REGISTER_USER: Sets the user state on registration.
-taskReducer.js
-Handles task-related state:
+# Task Manager
 
-FETCH_TASKS_REQUEST: Sets loading state.
-FETCH_TASKS_SUCCESS: Sets the tasks state.
-FETCH_TASKS_ERROR: Sets the error state.
-TOGGLE_TASK_COMPLETION: Toggles the completion status of a task.
-ADD_TASK: Adds a new task to the state.
-DELETE_TASK: Removes a task from the state.
-Sagas
-taskSagas.js
-fetchTasks: Saga to fetch tasks from the server.
-toggleTaskCompletion: Saga to handle task completion toggle.
-addTask: Saga to handle adding a new task.
-deleteTask: Saga to handle deleting a task.
-Selectors
-taskSelectors.js
-getAllTasks: Selector to get all tasks.
-getCompletedTasks: Selector to get completed tasks.
-getPendingTasks: Selector to get pending tasks.
-Components
-Auth
-Login.js
-Handles the login form and dispatches login actions.
+<p align='center'>
+<a href=src/images/qr-code (20).png><img src='./assets/https://github.com/fordefam12/task-manager'height='20%' width="20%"></a>
+</p>
+## Description
 
-Register.js
-Handles the registration form and dispatches register actions.
+ Task Manager is a powerful and user-friendly web application designed to help individuals and teams efficiently manage their tasks and projects. It offers a comprehensive set of features including user authentication, task creation, updating, deletion, and filtering by completion status. The application is built using modern web technologies such as React for the frontend, Redux for state management, and Redux Saga for handling asynchronous operations. It provides a smooth and responsive user experience, making it easy for users to stay organized and keep track of their tasks in real-time.
 
-Tasks
-TaskList.js
-Displays a list of tasks and handles task completion and deletion.
+## Table of Contents
+*[Title](#title)
 
-Styling
-CSS Modules: Used for component-specific styles.
-GlobalStyles: Used for global styles applied across the application.
-Theme: Defines theme variables such as colors and fonts.
-API Endpoints
-The application uses a mock backend provided by JSON Server. The following endpoints are available:
+*[Description](#description)
+    
+*[Installation](#installation)
+    
+*[Usage](#usage)
+    
+*[License](#license)
+    
+*[Contributors](#contributor)
+    
+*[Tests](#test)
+    
+*[Questions](#questions)
 
-GET /tasks: Fetch all tasks.
-POST /tasks: Add a new task.
-PUT /tasks/:id: Update a task.
-DELETE /tasks/:id: Delete a task.
-Contributing
-Contributions are welcome! Please follow these steps to contribute:
+*[URL](#URL)
+    
 
-Fork the repository.
-Create a new branch (git checkout -b feature/your-feature).
-Make your changes.
-Commit your changes (git commit -m 'Add some feature').
-Push to the branch (git push origin feature/your-feature).
-Create a pull request.
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
+## Installation
 
-Contact
-For any inquiries or issues, please contact:
+npm start
 
-Name: Your Name
-Email: your.email@example.com
-GitHub: Your GitHub Profile
-vbnet
+## Usage
+
+Task Manager is a powerful and user-friendly web application designed to help individuals and teams efficiently manage their tasks and projects
+
+## Contributors
+N/A
+
+## License
+[![License: The_Unlicense](https://img.shields.io/badge/License-The_Unlicense-brightgreen.svg)](https://opensource.org/licenses/The_Unlicense)
+
+
+
+
+## badges
+
+![JavaScript:](https://img.shields.io/badge/JavaScript-71%%25-blue)
+             ![HTML:](https://img.shields.io/badge/HTML-4.6%%25-red)
+             ![CSS:](https://img.shields.io/badge/CSS-24.4%%25-purple)
+
+<p align='center'>
+<a href='https://github.com/https://github.com/fordefam12/Task Manager'><img src='./'c:/Users/forde/Downloads/qr-code (20).png'' width="60%"></a>
+</p>
+<p align='center'>
+<a><img src="https://github-readme-stats.vercel.app/api?username=https://github.com/fordefam12&show_icons=true&theme=transparent" alt="https://github.com/fordefam12's github stats"></a>
+<a><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=https://github.com/fordefam12&layout=compact" height ="20%" width= "27%"></a>
+</p>
+
+
+## Tests
+N/A
+
+
+## Questions
+Any questions about this project please send me a message on *https://github.com/https://github.com/fordefam12 or email me at [Fordefam12@gmail.com]
+
+## URL
+  
+<p align='center'>
+<a href='https://serene-sea-98817-31cd6b171e7f.herokuapp.com/'>
+CLICK QR CODE for deploy link
+// <img src='./src/images/qr-code'c: './src/images/qr-code' (20).png' width="25%"></a>
+</p>
+
+## Screenshots
+
