@@ -1,32 +1,74 @@
 // src/pages/Dashboard.js
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { addTask, deleteTask, toggleTaskCompletion, fetchTasksRequest } from '../redux/actions/taskActions';
-import TaskList from '../components/Tasks/TaskList';
-import './Dashboard.css';
+import React, { useState, useEffect, useMemo, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import {
+  addTask,
+  deleteTask,
+  toggleTaskCompletion,
+  fetchTasksRequest,
+} from "../redux/actions/taskActions";
+import {
+  getAllTasks,
+  getCompletedTasks,
+  getPendingTasks,
+} from "../redux/selectors/taskSelectors";
+import TaskList from "../components/Tasks/TaskList";
+import "./Dashboard.css";
 
 const Dashboard = () => {
-  const [taskName, setTaskName] = useState('');
-  const tasks = useSelector((state) => state.tasks.tasks);
+  const [taskName, setTaskName] = useState("");
+  const [filter, setFilter] = useState("all");
   const dispatch = useDispatch();
+
+  const allTasks = useSelector(getAllTasks);
+  const completedTasks = useSelector(getCompletedTasks);
+  const pendingTasks = useSelector(getPendingTasks);
+
+  useEffect(() => {
+    dispatch(fetchTasksRequest());
+  }, [dispatch]);
 
   const handleAddTask = (e) => {
     e.preventDefault();
-    if (taskName.trim()) {
-      dispatch(addTask({ name: taskName, completed: false }));
-      setTaskName('');
+    if (!taskName.trim()) {
+      return;
     }
+    dispatch(addTask({ name: taskName, completed: false }));
+    setTaskName("");
   };
 
-  const handleDeleteTask = (taskId) => {
-    dispatch(deleteTask(taskId));
+  const handleDeleteTask = useCallback(
+    (taskId) => {
+      dispatch(deleteTask(taskId));
+    },
+    [dispatch]
+  );
+
+  const handleToggleTask = useCallback(
+    (taskId) => {
+      dispatch(toggleTaskCompletion(taskId));
+    },
+    [dispatch]
+  );
+
+  const handleFilterChange = (e) => {
+    setFilter(e.target.value);
   };
+
+  const filteredTasks = useMemo(() => {
+    if (filter === "completed") return completedTasks;
+    if (filter === "pending") return pendingTasks;
+    return allTasks;
+  }, [filter, allTasks, completedTasks, pendingTasks]);
 
   return (
     <div className="dashboard">
       <header className="dashboard-header">
         <h1>Task Manager Dashboard</h1>
-        <button onClick={() => dispatch(fetchTasksRequest())}>Refresh Tasks</button>
+        <Link to="/" className="home-button">
+          Home
+        </Link>
       </header>
       <main className="dashboard-main">
         <section className="task-stats">
@@ -34,15 +76,15 @@ const Dashboard = () => {
           <div className="stats">
             <div className="stat">
               <span>Total Tasks</span>
-              <span>{tasks.length}</span>
+              <span>{allTasks.length}</span>
             </div>
             <div className="stat">
               <span>Completed Tasks</span>
-              <span>{tasks.filter(task => task.completed).length}</span>
+              <span>{completedTasks.length}</span>
             </div>
             <div className="stat">
               <span>Pending Tasks</span>
-              <span>{tasks.filter(task => !task.completed).length}</span>
+              <span>{pendingTasks.length}</span>
             </div>
           </div>
         </section>
@@ -56,12 +98,26 @@ const Dashboard = () => {
               placeholder="Task name"
               required
             />
-            <button type="submit">Add Task</button>
+            <button type="submit" className="add-task-button">
+              Add Task
+            </button>
           </form>
         </section>
         <section className="task-list">
           <h2>Your Tasks</h2>
-          <TaskList tasks={tasks} onDelete={handleDeleteTask} onToggle={toggleTaskCompletion} />
+          <div className="filter">
+            <label htmlFor="filter">Filter Tasks: </label>
+            <select id="filter" value={filter} onChange={handleFilterChange}>
+              <option value="all">All</option>
+              <option value="completed">Completed</option>
+              <option value="pending">Pending</option>
+            </select>
+          </div>
+          <TaskList
+            tasks={filteredTasks}
+            onDelete={handleDeleteTask}
+            onToggle={handleToggleTask}
+          />
         </section>
       </main>
       <footer className="dashboard-footer">

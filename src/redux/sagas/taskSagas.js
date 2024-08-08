@@ -1,16 +1,56 @@
-// src/redux/sagas/taskSagas.js
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeEvery, all } from 'redux-saga/effects';
 import axios from 'axios';
+import {
+  FETCH_TASKS_REQUEST,
+  TOGGLE_TASK_COMPLETION,
+  ADD_TASK,
+  DELETE_TASK,
+  fetchTasksSuccess,
+  fetchTasksError,
+} from '../actions/taskActions';
 
 function* fetchTasks() {
   try {
     const response = yield call(axios.get, 'http://localhost:5000/tasks');
-    yield put({ type: 'FETCH_TASKS_SUCCESS', payload: response.data });
+    yield put(fetchTasksSuccess(response.data));
   } catch (error) {
-    yield put({ type: 'FETCH_TASKS_ERROR', payload: error.message });
+    yield put(fetchTasksError(error.message));
   }
 }
 
-export function* watchFetchTasks() {
-  yield takeEvery('FETCH_TASKS_REQUEST', fetchTasks);
+function* watchFetchTasks() {
+  yield takeEvery(FETCH_TASKS_REQUEST, fetchTasks);
+}
+
+function* toggleTaskCompletion(action) {
+  yield put(action);
+}
+
+function* watchToggleTaskCompletion() {
+  yield takeEvery(TOGGLE_TASK_COMPLETION, toggleTaskCompletion);
+}
+
+function* addTask(action) {
+  yield put(action);
+}
+
+function* watchAddTask() {
+  yield takeEvery(ADD_TASK, addTask);
+}
+
+function* deleteTask(action) {
+  yield put(action);
+}
+
+function* watchDeleteTask() {
+  yield takeEvery(DELETE_TASK, deleteTask);
+}
+
+export default function* rootSaga() {
+  yield all([
+    watchFetchTasks(),
+    watchToggleTaskCompletion(),
+    watchAddTask(),
+    watchDeleteTask(),
+  ]);
 }

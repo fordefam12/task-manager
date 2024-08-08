@@ -1,51 +1,69 @@
-// src/components/Auth/Register.js
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { registerUser } from '../../redux/actions/authActions';
+import './Register.css';
 
 const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [passwordStrength, setPasswordStrength] = useState('');
-
-  const evaluatePasswordStrength = (password) => {
-    if (password.length > 8 && /[A-Z]/.test(password) && /[0-9]/.test(password)) {
-      return 'Strong';
-    } else if (password.length > 5) {
-      return 'Medium';
-    } else {
-      return 'Weak';
-    }
-  };
-
-  const handlePasswordChange = (e) => {
-    const newPassword = e.target.value;
-    setPassword(newPassword);
-    setPasswordStrength(evaluatePasswordStrength(newPassword));
-  };
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Implement registration logic
+    if (!email || !password || !confirmPassword) {
+      setError('Please fill in all fields');
+      return;
+    }
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+    setError(null);
+    dispatch(registerUser({ email, password }));
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-        required
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={handlePasswordChange}
-        placeholder="Password"
-        required
-      />
-      <div>Password Strength: {passwordStrength}</div>
-      <button type="submit">Register</button>
-    </form>
+    <div className="register-container">
+      <div className="register-box">
+        <h2>Register</h2>
+        {error && <div className="error-message">{error}</div>}
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Confirm Password</label>
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Confirm your password"
+              required
+            />
+          </div>
+          <button type="submit" className="register-button">Register</button>
+        </form>
+      </div>
+    </div>
   );
 };
 

@@ -1,16 +1,19 @@
-// src/redux/store.js
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import rootReducer from './reducers';
-import { watchFetchTasks } from './actions/taskActions';
+import authReducer from './reducers/authReducer';
+import taskReducer from './reducers/taskReducer';
+import rootSaga from './sagas/taskSagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(
-  rootReducer,
-  applyMiddleware(sagaMiddleware)
-);
+const rootReducer = combineReducers({
+  auth: authReducer,
+  tasks: taskReducer,
+});
 
-sagaMiddleware.run(watchFetchTasks);
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+
+// Run the saga
+sagaMiddleware.run(rootSaga);
 
 export default store;

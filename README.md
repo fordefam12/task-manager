@@ -41,3 +41,19 @@ Follow these steps to get a local copy of the project up and running.
 ```bash
 git clone git@github.com:yourusername/task-manager.git
 cd task-manager
+
+
+
+### Explanation
+
+- **Title and Badges:** The title is followed by badges for license and build status.
+- **Table of Contents:** Helps users navigate through the README.
+- **About:** Brief introduction to the project.
+- **Features:** List of features provided by the application.
+- **Installation:** Detailed steps to set up the project locally.
+- **Usage:** Instructions for running the JSON server and building the project for production.
+- **API Endpoints:** Information about the API endpoints used by the application.
+- **Contributing:** Guidelines for contributing to the project.
+- **License:** Information about the project's license.
+- **Contact:** Contact information and social media links.
+

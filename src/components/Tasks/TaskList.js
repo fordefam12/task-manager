@@ -1,10 +1,9 @@
-// src/components/Tasks/TaskList.js
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { toggleTaskCompletion, deleteTask } from '../../redux/actions/taskActions';
 import './TaskList.css';
 
-const TaskList = ({ tasks }) => {
+const TaskList = React.memo(({ tasks }) => {
   const dispatch = useDispatch();
 
   const handleToggleCompletion = (taskId) => {
@@ -30,6 +29,6 @@ const TaskList = ({ tasks }) => {
       ))}
     </ul>
   );
-};
+});
 
 export default TaskList;

@@ -18,4 +18,4 @@ const App = () => {
   );
 };
 
-export default App; // Ensure default export
+export default App;
